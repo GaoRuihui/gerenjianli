@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/boke.css">
+    <script src="../js/boke.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header">
+            <a href="demo.html">
+                <div class="fl box">
+                <span class="fl">
+                    <img src="https://ccdn.goodq.top/caches/b2ac3c765e8751bf8ed83348310feed1/aHR0cDovLzU2YjAwNTk3MGNmYzcudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxNi8wMi8xNjlmMTcwNGViYzMxZWI0NjUzODhjZjY1MzM0Y2RkZC5wbmc_p_p100_p_3D.png" alt="">
+                </span>
+                    <div class="fl wenzi">
+                        <p><strong>Marry's</strong></p>
+
+                        <p><strong>huier</strong></p>
+                    </div>
+                </div>
+            </a>
+
+            <nav class="fl">
+                <div class="ma">
+                    <ul>
+                        <li><a href="">博客</a></li>
+                        <li><a href="resume.html">关于我</a></li>
+                        <li><a href="resume.html">给我留言</a></li>
+                    </ul>
+                </div>
+
+            </nav>
+            <div class="fl bot">
+                <img src="../images/suo.png" alt="">
+            </div>
+        </div>
+        <section>
+            <div class="lianxi">
+                <p>给我留言</p>
+            </div>
+            <div class="hezi">
+                <p>使用下面的表单之前需要配置邮箱，详情可以参考教程《如何设置表单中的邮箱》</p>
+                <div class="shu">
+                    <form action="do.php" method="post">
+                        <div class="one">
+                            <label for="">称呼
+                            </label>
+                            <div>
+                                <input type="text" id='user'>
+                            </div>
+                        </div>
+                        <div class="one">
+                            <label for="">Email 信箱
+                            </label>
+                            <div>
+                                <input type="text" id='txt'>
+                            </div>
+                        </div>
+                        <div class="one">
+                            <label for="">内容
+                            </label>
+                            <div>
+                                <input type="text" name="content">
+                            </div>
+                        </div>
+                        <div class="anniu" id="btn">
+                            <a href="#">送出</a>
+                        </div>
+                    </form>
+                </div>
+                <div class="shouliu">
+                    <div class="bbb">
+                        <h2>网友留言</h2>
+                        <h1><span class='num'>已有<em id='num'>0</em>人评论</span></h1>
+                    </div>
+
+                    <div class='show' id='show'>
+                        <p class='liuyan'>暂无留言</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="haha">
+                <p>© 2017 Marry's Blog 版权所有 网站备案号: 京123456789</p>
+            </div>
+        </section>
+
+    </header>
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script>
+        $(function () {
+            $('#btn').click(function () {
+                //清空show
+                if($('.show').has($('.liuyan'))){
+                    $('.show .liuyan').css('display','none');
+                }
+                // 提交添加
+                if($('#user').val() == ''){
+                    alert('请输入用户名');
+                }else{
+                    const div = $('<div class="hezia"></div>').appendTo($('.show'));
+                    const h3 = $('<h3></h3>').appendTo(div);
+                    const span = $('<span></span>').html($('#user').val()).appendTo(h3);
+
+                    // 时间
+                    const dt = new Date();
+                    const time = dt.toLocaleString()
+                    const i = $('<i></i>').css({
+                        'position':'absolute',
+                        'top':'-3px',
+                        'right':'60px',
+                        'font':'400 14px/30px "simsun"'
+                    }).html(time).appendTo(h3);
+                    const p = $('<p></p>').html($('#txt').val()).appendTo(div);
+                    const del = $('<h4>删除</h4>').css({
+                        position:'absolute',
+                        bottom:'-63px',
+                        right:'70px',
+                        width:'60px',
+                        heigth:'30px'
+                    }).appendTo(div).click(function () {
+                        $(this).parent().remove();
+                        const divslength = $('.show').children().length;
+                        $('#num').html(divslength-1);
+                    });
+
+                }
+                //改变提交数量
+                const divslength = $('.show').children().length;
+                $('#num').html(divslength-1);
+            });
+        });
+    </script>
+</body>
+</html>
